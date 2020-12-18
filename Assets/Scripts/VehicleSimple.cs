@@ -31,7 +31,7 @@ public class VehicleSimple : MonoBehaviour
         // Calculate position
         float carRotation = transform.eulerAngles.z;
 
-        //_velocity = _velocity + _acceleration * Time.deltaTime;
+        _velocity = _velocity + _acceleration * Time.deltaTime;
 
         float velX = _velocity * Mathf.Cos((carRotation + slipAngle) * Mathf.Deg2Rad);
         float velY = _velocity * Mathf.Sin((carRotation + slipAngle) * Mathf.Deg2Rad);
