@@ -26,8 +26,10 @@ public class VehicleSimple : MonoBehaviour
     [SerializeField] private float x_dot = 1;
     private float x_ddot = 0;
 
-    private float y_dot;
-    private float y_ddot;
+    [HideInInspector] public float y_dot;
+    [HideInInspector] public float y_ddot;
+
+    [HideInInspector] public float theta;
 
     private float thetta_dot;
     private float thetta_ddot;
@@ -53,9 +55,9 @@ public class VehicleSimple : MonoBehaviour
 
         float delta = _angle * Mathf.Deg2Rad;
 
-        //y_ddot = 0;
-        y_ddot = - x_dot * thetta_dot + 1 / mass * (c1 * delta - c1 * Mathf.Cos(delta) * frontSlip - c2 * backSlip);
-        thetta_ddot = 1 / inertia * (a * c1 * delta - a * c1 * Mathf.Cos(delta) * frontSlip + b * c2 * backSlip);
+        y_ddot = 0;
+        //y_ddot = - x_dot * thetta_dot + 1 / mass * (c1 * delta - c1 * Mathf.Cos(delta) * frontSlip - c2 * backSlip);
+        thetta_ddot = 1 / inertia * (a * c1 * delta); //- a * c1 * Mathf.Cos(delta) * frontSlip + b * c2 * backSlip);
     }
 
     private void UpdateVehicle()
@@ -94,6 +96,8 @@ public class VehicleSimple : MonoBehaviour
 
         if(IsCameraFollow)
             _camera.transform.position = new Vector3(transform.position.x + _offset, _camera.transform.position.y, _camera.transform.position.z);
+
+        theta = transform.eulerAngles.z > 180 ? - (360 - transform.eulerAngles.z) : transform.eulerAngles.z;
     }
 
     private float deltaPosError = 0;
@@ -110,7 +114,7 @@ public class VehicleSimple : MonoBehaviour
 
         _angle = _angleLimit * (direction * posError * Kp + deltaPosError * Kd);
 
-        Debug.LogError($"P: {direction * posError * Kp}; D: {deltaPosError * Kd}; Angle: {_angle}");
+        Debug.Log($"P: {direction * posError * Kp}; D: {deltaPosError * Kd}; Angle: {_angle}");
     }
 
     private void WheelUpdate()
