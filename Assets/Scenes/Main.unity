@@ -222,7 +222,7 @@ MonoBehaviour:
   _frontWheel: {fileID: 1772158682}
   _angle: 0
   _angleLimit: 35
-  KeyboardEnable: 1
+  KeyboardEnable: 0
   IsCameraFollow: 0
   accelSpeed: 2
   turningSpeed: 200
@@ -233,11 +233,11 @@ MonoBehaviour:
   y_ddot: 0
   theta: 0
   mass: 50
-  c1: 200
-  c2: 200
-  inertia: 10
-  Kp: 0.3
-  Kd: 0.55
+  c1: 30
+  c2: 30
+  inertia: 1
+  Kp: 0.275
+  Kd: 0.56
 --- !u!1 &268842867
 GameObject:
   m_ObjectHideFlags: 0

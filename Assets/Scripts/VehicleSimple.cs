@@ -57,7 +57,7 @@ public class VehicleSimple : MonoBehaviour
 
         y_ddot = 0;
         //y_ddot = - x_dot * thetta_dot + 1 / mass * (c1 * delta - c1 * Mathf.Cos(delta) * frontSlip - c2 * backSlip);
-        thetta_ddot = 1 / inertia * (a * c1 * delta); //- a * c1 * Mathf.Cos(delta) * frontSlip + b * c2 * backSlip);
+        thetta_ddot = 1 / inertia * (a * c1 * delta - a * c1 * Mathf.Cos(delta) * frontSlip + b * c2 * backSlip);
     }
 
     private void UpdateVehicle()
